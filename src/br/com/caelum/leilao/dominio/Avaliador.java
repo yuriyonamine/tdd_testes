@@ -11,7 +11,7 @@ public class Avaliador {
 	private List<Lance> maiores;
 	private double mediaLance = 0;
 
-	public void avalia(Leilao leilao) {
+	public void avalia(Leilao leilao) {	
 		double valorTotalLances = 0;
 		for (Lance lance : leilao.getLances()) {
 			if (lance.getValor() > maiorLance) {

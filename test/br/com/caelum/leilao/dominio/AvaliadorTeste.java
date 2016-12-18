@@ -176,4 +176,20 @@ public class AvaliadorTeste {
 
 	        assertEquals(0, maiores.size());
 	    }
+	    
+	    @Test
+	    public void naoDeveAceitarDoisLancesSeguidosDoMesmoUsuario(){
+	    	Leilao leilao = new Leilao("Video Game");
+	    	
+	    	Usuario usuario = new Usuario("Quero");
+	    	leilao.propoe(new Lance(usuario, 1000));	    	
+	    	leilao.propoe(new Lance(usuario, 2000));	    	
+	    	
+	    	Avaliador leiloeiro = new Avaliador();
+	    	leiloeiro.avalia(leilao);
+	    	
+	    	assertEquals(leilao.getLances().get(0).getUsuario(), usuario);
+	    	assertEquals(1, leilao.getLances().size());
+	    	
+	    }
 }
