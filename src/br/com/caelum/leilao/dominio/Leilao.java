@@ -46,12 +46,15 @@ public class Leilao {
 
 	public void dobraUltimoLanceDo(Usuario usuario) {
 		Lance ultimoLanceDoUsuario = ultimoLanceDo(usuario);
-		propoe(new Lance(usuario, ultimoLanceDoUsuario.getValor() * 2));
+
+		if (ultimoLanceDoUsuario != null) {
+			propoe(new Lance(usuario, ultimoLanceDoUsuario.getValor() * 2));
+		}
 	}
 
 	private Lance ultimoLanceDo(Usuario usuario) {
-		Lance ultimoLanceDoUsuario  = null;
-		
+		Lance ultimoLanceDoUsuario = null;
+
 		for (int index = lances.size() - 1; index >= 0; index--) {
 			Lance lance = lances.get(index);
 
@@ -60,7 +63,7 @@ public class Leilao {
 				break;
 			}
 		}
-		
+
 		return ultimoLanceDoUsuario;
 	}
 

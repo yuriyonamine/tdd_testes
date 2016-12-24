@@ -222,7 +222,7 @@ public class AvaliadorTeste {
 
 	@Test
 	public void deveDobrarOUltimoLanceDado() {
-		Leilao leilao = new Leilao("Preisteichu");
+		Leilao leilao = new Leilao("Kichute");
 
 		Usuario brito = new Usuario("Brito");
 		Usuario junior = new Usuario("Junior");
@@ -236,5 +236,32 @@ public class AvaliadorTeste {
 
 		assertEquals(3, leilao.getLances().size());
 		assertEquals(30000, ultimoLance.getValor(), 0.0001);
+	}
+	
+	@Test
+	public void naoDeveDobrarSemLancesAnteriores(){
+		Leilao leilao = new Leilao("Sem Nada");
+		
+		Usuario maoDeVaca = new Usuario("Mão de Vaca");
+		
+		leilao.dobraUltimoLanceDo(maoDeVaca);
+		
+		assertEquals(0, leilao.getLances().size());
+	}
+	
+	@Test
+	public void naoDeveDobrarQuandoForUmLanceSeguidoDoMesmoUsuario(){
+		Leilao leilao = new Leilao("Preisteichu");
+		
+		Usuario yudi = new Usuario("Yudi");
+		
+		leilao.propoe(new Lance(yudi, 5000));
+		leilao.dobraUltimoLanceDo(yudi);
+		
+		
+		Lance ultimoLance = leilao.getLances().get(leilao.getLances().size()-1);
+		assertEquals(1, leilao.getLances().size());
+		assertEquals(5000, ultimoLance.getValor(), 0.0001);
+		
 	}
 }
