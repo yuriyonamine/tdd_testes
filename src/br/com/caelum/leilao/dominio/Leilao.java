@@ -14,8 +14,7 @@ public class Leilao {
 		this.lances = new ArrayList<Lance>();
 	}
 
-	public void propoe(Lance lance) {
-
+	public void propoe(Lance lance) {	
 		if (lances.isEmpty() || podeDarLance(lance.getUsuario())) {
 			lances.add(lance);
 		}

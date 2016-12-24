@@ -3,7 +3,9 @@ package br.com.caelum.leilao.desafio;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Bissexto {
+import br.com.caelum.desafio.VerificadorAnoBissexto;
+
+public class BissextoTest {
 
 	@Test
 	public void deveRetornarAnoBissexto() {

@@ -17,7 +17,7 @@ public class AvaliadorTeste {
 	private Usuario yudi;
 
 	@Before
-	private void setUp() {
+	public void setUp() {
 		leiloeiro = new Avaliador();
 		maria = new Usuario("Maria");
 		joao = new Usuario("João");
@@ -151,18 +151,6 @@ public class AvaliadorTeste {
 	}
 
 	@Test
-	public void deveDevolverListaVaziaCasoNaoHajaLances() {
-		Leilao leilao = new CriadorDeLeilao().para("Playstation 3 Novo")
-				.constroi();
-		
-		leiloeiro.avalia(leilao);
-
-		List<Lance> maiores = leiloeiro.getTresMaiores();
-
-		assertEquals(0, maiores.size());
-	}
-
-	@Test
 	public void naoDeveAceitarDoisLancesSeguidosDoMesmoUsuario() {
 		Leilao leilao = new CriadorDeLeilao().para("Playstation 3 Novo")
 				.lance(joao, 1000)
@@ -240,5 +228,13 @@ public class AvaliadorTeste {
 		assertEquals(1, leilao.getLances().size());
 		assertEquals(5000, ultimoLance.getValor(), 0.0001);
 
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void naoDeveAvaliarLeilaoSemLances(){
+		Leilao leilao = new CriadorDeLeilao().para("Playstation 3 Novo")
+				.constroi();
+		
+		leiloeiro.avalia(leilao);
 	}
 }

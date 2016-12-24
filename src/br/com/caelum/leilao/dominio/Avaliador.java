@@ -12,6 +12,11 @@ public class Avaliador {
 	private double mediaLance = 0;
 
 	public void avalia(Leilao leilao) {	
+		
+		if(leilao.getLances().isEmpty()){
+            throw new RuntimeException("Não é possível avaliar um leilão sem lances");
+		}
+		
 		double valorTotalLances = 0;
 		for (Lance lance : leilao.getLances()) {
 			if (lance.getValor() > maiorLance) {
@@ -24,8 +29,12 @@ public class Avaliador {
 			valorTotalLances += lance.getValor();
 		}
 
-		mediaLance = valorTotalLances / leilao.getLances().size();
+		calculaMediaLances(leilao, valorTotalLances);
 		pegaOsMaioresNo(leilao);
+	}
+
+	private void calculaMediaLances(Leilao leilao, double valorTotalLances) {
+		mediaLance = valorTotalLances / leilao.getLances().size();
 	}
 
 	private void pegaOsMaioresNo(Leilao leilao) {

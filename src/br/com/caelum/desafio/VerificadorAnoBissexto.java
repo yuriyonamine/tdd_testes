@@ -1,4 +1,4 @@
-package br.com.caelum.leilao.desafio;
+package br.com.caelum.desafio;
 
 public class VerificadorAnoBissexto {
 
